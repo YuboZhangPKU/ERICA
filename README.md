@@ -90,7 +90,7 @@ The scripts `ERICAVisualization.py` can be used to filter results by default or 
 #### Getting Started
 ##### Download 
 ```
-git clone 
+git clone https://github.com/YuboZhangPKU/ERICA.git
 cd ERICA
 ```
 ##### Requirements
@@ -144,8 +144,10 @@ Name of scaffolds to include (separated by commas), optional.
 
 An example is provided in [test](./test) and the result in [test_result](./test_result). 
 
-The command line for using `vcf2MSA.py` is:
+The command lines for using `vcf2MSA.py` are:
+
 ```
+# four-taxon model 
 python vcf2MSA.py \
 -i test/pop_test.vcf.gz \
 -r test/pop_test.fasta \
@@ -155,16 +157,27 @@ python vcf2MSA.py \
 -P2 H_m_amaryllis_1,H_m_amaryllis_2,H_m_amaryllis_3,H_m_amaryllis_4 \
 -P3 H_t_thelxinoe_1,H_t_thelxinoe_2,H_t_thelxinoe_3,H_t_thelxinoe_4 \
 -P4 H_ethilla_1,H_ethilla_2,H_ethilla_3,H_ethilla_4
+
+# five-taxon model
+python vcf2MSA.py \
+-i test/five_pop_test.vcf.gz \
+-r test/five_pop_test.fasta \
+-o test/five_pop_test \
+-f haplo \
+-P1 GP39,GP77,GP536,GP640,GP761-1 \
+-P2 Nipponbare,HP14,HP44,HP48,HP314,HP103,HP45,UR28 \
+-P3 W1943,W3095-2,Orufi,W3078-2 \
+-P4 W0170,W1698,W1754,W0123-1,Oniva \
+-P5 Obart
 ```
 
 #### Using the trained CNN models 
 
-As mentioned above, the scripts `ERICAPrediction.py` use 32 or 40 sequence alignment as input. The output of `vcf2MSA.py` can be used as input in this step directly. 
+As mentioned above, the script `ERICAPrediction.py` use 32 or 40 sequence alignments as input, and the `--Input` argument specifies the path of input MSA files. If the path is a directory, all of the files existed in this directory will be analyzed. The parameter after the argument `--Tasks` specifies the number of jobs running in parallel. 
+The output of `vcf2MSA.py` can be used as input in this step directly. 
 
-The programs require the model `multiprocessing` and `tensorflow`.
-
-The batch versions are four_population_prediction_MT.py and five_population_prediction_MT.py. They are useful when more than one input file needs to be analyzed. The parameter after the argument -T specifies the number of threads that the program will be using. With these two scripts, all the files that exist in the input directory will be analyzed.
-
+The program requires the model `multiprocessing` and `tensorflow`.
+ 
 
 `ERICAPrediction.py` has the following options:
 - __-h, --help__
@@ -180,11 +193,17 @@ Number of tasks running in parallel.
 - __-m, --Model__
 Name of trained CNN models used for prediction. 
 
-The command line for analyzing the example data is:
+The command lines for analyzing the example data are:
 ```
+# four-taxon model 
 python ERICAPrediction.py -i test/pop_test_Hmel218003o.txt -o test/pop_test_Hmel218003o_res.txt -p 4
+
+# five-taxon model
+python ERICAPrediction.py -i test/five_pop_test_10.txt -o test/five_pop_test_10_res.txt -p 5 
 ```
-The output file contains three columns as the proportions of three topologies, and each line shows a result of a non-overlapped 5 kb window.
+
+The output file contains three or fifteen columns as the probabilities of each topology, and each line shows a result of a non-overlapped 5 kb window.
+An example results of four-taxon model:
 ```
 0.2865   0.2967  0.4167  
 0.5867   0.2538  0.1595  
@@ -195,11 +214,11 @@ The output file contains three columns as the proportions of three topologies, a
 
 #### Post-processing and visualization 
 
-The scripts `ERICAVisualization.py` use topology proportions as input and plot topologies along a chromosome or given regions. The topology with the highest proportion or greater than a predefined threshold will be recorded, to suggest putative loci of introgression.
+The script `ERICAVisualization.py` use topology proportions as input and plot topologies along a chromosome or given regions. The topology with the highest proportion or greater than a predefined threshold will be recorded, to suggest putative loci of introgression.
 
 The program requires the model `plotnine` and `pandas`.
 
-The programs have following options:
+The program has following options:
 - __-h, --help__
 Show the help message and exit.
 - __-i, --Input__
@@ -223,9 +242,10 @@ Area charts for each topology along chromosome. Default = 'True'.
 - __-c, --Chr__
 Name for the chromosome, optional.
 
-The following command can be used to calculate the mean value for each 10 kb window, and to visualize the result.
+The following commands can be used to calculate the mean value for each 10 kb window, and to visualize the result.
 
 ```
+# four-taxon model
 python ERICAVisualization.py \
 -i test/pop_test_Hmel218003o_res.txt \
 -o test/pop_test_Hmel218003o_10k \
@@ -234,8 +254,18 @@ python ERICAVisualization.py \
 -c Hmel218003o \
 -r 1:200 \
 -d 0.5
+
+# five-taxon model
+python ERICAVisualization.py \
+-i test/five_pop_test_10_res.txt \
+-o test/five_pop_test_10_10k \
+-p 5 \
+-w 10000 \
+-c Chr10 \
+-r 1:200 \
+-d 0.5
 ```
-An example of output csv files `pop_test_Hmel218003o_10k.csv` records the topology proportions and category information.
+An example of output csv file `pop_test_Hmel218003o_10k.csv` records the topology proportions and category information.
 
 |Chr|Index|A|B|C|CminusB|Max Value|Max Class|Distance Class|
 |:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
@@ -247,3 +277,5 @@ An example of output csv files `pop_test_Hmel218003o_10k.csv` records the topolo
 The line plot likes this:
 ![](test_result/pop_test_Hmel218003o_10k_Line.png)
 
+And the area plot likes this:
+![](test_result/pop_test_Hmel218003o_10k_Area.png)
