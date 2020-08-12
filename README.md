@@ -83,6 +83,7 @@ We have two trained CNN models covering most of the evolutionary scenarios. Scri
 #### Finding introgressed loci
 
 According to the relationships inferred by the CNN models, we can identify the introgressed regions via discordance between gene trees and species trees. The gene flow between non-sister species can change the topological structures, and the new topology depends on the species tree and direction of gene flow. 
+
 ![](./Impact_of_gene_flow_on_the_topological_structures.png)
 
 However, both introgression and incomplete lineage sorting (ILS) can lead to the discordant patterns. To distinguish signatures of introgression from ILS, we evaluated the theoretical distributions of topological discordance caused by ILS on the simulated data (see our paper for more details). We chose 0.4 as a threshold for 50 kb windows to make a false-positive rate (FPR) less than 5%.
