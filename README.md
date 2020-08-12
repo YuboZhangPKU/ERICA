@@ -82,7 +82,10 @@ We have two trained CNN models covering most of the evolutionary scenarios. Scri
 
 #### Finding introgressed loci
 
-According to the relationships inferred by the CNN models, we can identify discordant patterns between gene trees and species trees. However, both introgression and incomplete lineage sorting (ILS) can lead to discordant patterns. To distinguish signatures of introgression from ILS, we evaluated the theoretical distributions of topological discordance caused by ILS on the simulated data (see our paper for more details). We chose 0.4 as a threshold for 50 kb windows to make a false-positive rate (FPR) less than 5%.
+According to the relationships inferred by the CNN models, we can identify the introgressed regions via discordance between gene trees and species trees. The gene flow between non-sister species can change the topological structures, and the new topology depends on the species tree and direction of gene flow. 
+![](./Impact_of_gene_flow_on_the_topological_structures.png)
+
+However, both introgression and incomplete lineage sorting (ILS) can lead to the discordant patterns. To distinguish signatures of introgression from ILS, we evaluated the theoretical distributions of topological discordance caused by ILS on the simulated data (see our paper for more details). We chose 0.4 as a threshold for 50 kb windows to make a false-positive rate (FPR) less than 5%.
 
 The scripts `ERICAVisualization.py` can be used to filter results by default or according to a user-defined threshold and plot topology proportions across the interesting regions.
 
@@ -214,7 +217,10 @@ An example results of four-taxon model:
 
 #### Post-processing and visualization 
 
-The script `ERICAVisualization.py` use topology proportions as input and plot topologies along a chromosome or given regions. The topology with the highest proportion or greater than a predefined threshold will be recorded, to suggest putative loci of introgression.
+The script `ERICAVisualization.py` use topology proportions as input and plot topologies along a chromosome or given regions. The topology with the highest proportion or greater than a predefined threshold will be recorded, to suggest the putative loci of introgression.
+
+The relationships between colors in output plots and topology follows:
+![](./Topological_structures_of_four-taxon_and_five-taxon_model.png)
 
 The program requires the model `plotnine` and `pandas`.
 
@@ -232,7 +238,7 @@ Window size for outputing and plotting. Default = '50000'. The parameter should 
 - __-r, --Region__
 1-based indexs of focal regions, split by ':'. Default = '1:-1' (the full region).
 - __-d, --DistanceToZero__
-Record topologies having proportion greater than the given threshold. Default = '0.40'.
+Record topologies having proportion greater than the given threshold. Default = '0.40'. '?' indicates there is no topology passing through the threshold, which means a complex histories. 
 - __-m, --MaxValue__
 Plot the highest supporting topologies along chromosome. Default = 'True'.
 - __-l, --Line__
