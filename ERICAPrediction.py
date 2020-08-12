@@ -5,10 +5,10 @@ VERSION_INFO = \
     Author: ZHU QINGJIE, QIU JIWEN, ZHANG YUBO
 
     Version-01:
-        2020-01  Infer evolutionary relationship from multiple sequence alignment for four population
+        2020-01  Inferring evolutionary relationship from multiple sequence alignment for four population
 
     Version-02:
-        2020-08  Infer evolutionary relationship from multiple sequence alignment for four and five population       
+        2020-08  Inferring evolutionary relationship from multiple sequence alignment for four and five population       
     """
 # Version information END ----------------------------------------------------
 
@@ -348,7 +348,7 @@ if __name__ == '__main__':
                 MSAInputList[i] = (os.path.abspath(MSAInput) + '/' + MSAInputList[i])
     
 
-    # input a MSA file
+    # input an MSA file
     elif Path(MSAInput).is_file():
         Tasks = 1
         MSAInputList = [MSAInput]
@@ -365,7 +365,7 @@ if __name__ == '__main__':
         sys.exit()
 
 
-    # run prediction jobs in parallel
+    # running prediction jobs in parallel
     print("-" * 30)
     index = 0
     flag = True

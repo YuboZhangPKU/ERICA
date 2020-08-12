@@ -30,11 +30,11 @@ if __name__ == '__main__':
     parser.add_argument("-p", "--Population",
                         help="Number of populations", choices=("4", "5"), required=True)
     parser.add_argument("-w", "--WindowSize",
-                        help="Window size for outputing and plotting, default=50000", default="50000")
+                        help="Window size for outputting and plotting, default=50000", default="50000")
     parser.add_argument("-r", "--Region",
-                        help="1-based indexs for analysed regions, default=1:-1 (the full region)", default='1:-1')
+                        help="1-based indexes for analyzed regions, default=1:-1 (the full region)", default='1:-1')
     parser.add_argument("-d", "--DistanceToZero",
-                        help="The threshold used for classfication, probabilities greater than the threshold will be recorded", default='0.40')
+                        help="The threshold used for classification, probabilities greater than the threshold will be recorded", default='0.40')
     parser.add_argument("-m", "--MaxValue",
                         help="Plot the highest supporting topologies along chromosome", default='True', choices=("True", "False"))
     parser.add_argument("-l", "--Line",
@@ -76,7 +76,7 @@ if __name__ == '__main__':
         chr_name = ARGS.Chr
 
     
-    #calcuate mean value for each window
+    #calculating mean value for each window
     mean_data = []
     if PopulationCount == "4":
         n = 3
