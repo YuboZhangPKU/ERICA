@@ -24,9 +24,7 @@ TGGTTTCGTCCGCCCAGGCACATCACTGAGCAATCAGACCTCCCAAACTA
 TGGATTCGTCCGCCCAGGCACNTCACTGAGCAATCAGACCTCGCATACTA
 TGGATTCGTCCGCCCAGGCACATCACTGAGCAATCAGACCTCGCAAACTA
 ```
-Users can use algorithms such as [Clustal W](http://www.clustal.org/clustal2/) or [LASTZ](http://www.bx.psu.edu/~rsharris/lastz/) for whole genome alignment. We also provide a shell script `fa2MSA.sh` to generate alignments using genome assemblies and process the data for downstream analyses. 
-
-For a population-level study, genotype data storing in the format of [Variant Call Format (VCF)](https://doi.org/10.1093/bioinformatics/btr330) can be used. Users can use `vcf2MSA.py` to convert custom VCF files to MSA format.
+Users can use algorithms such as [Clustal W](http://www.clustal.org/clustal2/) or [LASTZ](http://www.bx.psu.edu/~rsharris/lastz/) for whole genome alignment. For a population-level study, genotype data storing in the format of [Variant Call Format (VCF)](https://doi.org/10.1093/bioinformatics/btr330) can be used. Users can use `vcf2MSA.py` to convert custom VCF files to MSA format.
 
 An example of VCF:
 ```
@@ -86,7 +84,7 @@ According to the relationships inferred by the CNN models, we can identify the i
 
 ![](./Impact_of_gene_flow_on_the_topological_structures.png)
 
-However, both introgression and incomplete lineage sorting (ILS) can lead to the discordant patterns. To distinguish signatures of introgression from ILS, we evaluated the theoretical distributions of topological discordance caused by ILS on the simulated data (see our paper for more details). We chose 0.4 as a threshold for 50 kb windows to make a false-positive rate (FPR) less than 5%.
+However, both introgression and incomplete lineage sorting (ILS) can lead to discordant patterns. To distinguish signatures of introgression from ILS, we evaluated the theoretical distributions of topological discordance caused by ILS on the simulated data (see our paper for more details). We chose 0.4 as a threshold for 50 kb windows to make a false-positive rate (FPR) less than 5%.
 
 The scripts `ERICAVisualization.py` can be used to filter results by default or according to a user-defined threshold and plot topology proportions across the interesting regions.
 
