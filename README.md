@@ -114,7 +114,7 @@ The script `vcf2MSA.py` generates alignments of individual re-sequencing data fr
 
 For different situations and hypotheses, four or five populations can be included, with the arguments`--pop4` or `--pop5` appointing the outgroup, respectively.
 
-The program is designed for diploid genome and insensitive to the order of alleles. Both phased and unphased genotype data can be used. If the `--format` argument followed by the `diplo` parameter, a pair of sequences will be generated with one sequence recording the allele in the first column, and another recording the second allele. Instead, if the parameter is `haplo`, only one allele will be randomly retained and written into a sequence. Therefore, you can choose up to 4 or 8 individuals for each population, respectively. Note that it's not necessary to provide the maximum number of samples, the program can work with at least one individual per population, by randomly duplicating sequences of given individuals.
+The program is designed for the diploid genome and insensitive to the order of alleles. Both phased and unphased genotype data can be used. If the `--format` argument followed by the `diplo` parameter, a pair of sequences will be generated with one sequence recording the allele in the first column, and another recording the second allele. Instead, if the parameter is `haplo`, only one allele will be randomly retained and written into a sequence. Therefore, you can choose up to 4 or 8 individuals for each population, respectively. Note that it's not necessary to provide the maximum number of samples, the program can work with at least one individual per population, by randomly duplicating sequences of given individuals.
 
 The script will output an MSA file for each scaffold in the reference sequences. Users can use `--include` or `--exclude` arguments to specify the scaffolds for analyses.
 
@@ -122,7 +122,7 @@ The script will output an MSA file for each scaffold in the reference sequences.
 - __-h, --help__
 Show the help message and exit.
 - __-i, --Input__
-Path to input vcf file. Compressed (gzipped) file is also supported. 
+Path to an input VCF file. The compressed (gzipped) file is also supported. 
 - __-o, --Output__
 Output file name.
 - __-r, --Reference__
@@ -175,7 +175,7 @@ python vcf2MSA.py \
 
 #### Using the trained CNN models 
 
-As mentioned above, the script `ERICAPrediction.py` use 32 or 40 sequence alignments as input, and the `--Input` argument specifies the path of input MSA files. If the path is a directory, all of the files existed in this directory will be analyzed. The parameter after the argument `--Tasks` specifies the number of jobs running in parallel. 
+As mentioned above, the script `ERICAPrediction.py` use 32 or 40 sequence alignments as input, and the `--Input` argument specifies the path of input MSA files. If the path is a directory, all of the files that existed in this directory will be analyzed. The parameter after the argument `--Tasks` specifies the number of jobs running in parallel. 
 The output of `vcf2MSA.py` can be used as input in this step directly. 
 
 The program requires the model `multiprocessing` and `tensorflow`.
@@ -189,9 +189,9 @@ Path to input MSA file or directory.
 - __-o, --Output__
 Output file name.
 - __-p, --Population__
-Number of populations, _4_ or _5_.
+The number of populations, _4_ or _5_.
 - __-t, --Tasks__
-Number of tasks running in parallel.
+The number of tasks running in parallel.
 - __-m, --Model__
 Name of trained CNN models used for prediction. 
 
