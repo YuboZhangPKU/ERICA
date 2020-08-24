@@ -216,34 +216,34 @@ An example results of four-taxon model:
 
 #### Post-processing and visualization 
 
-The script `ERICAVisualization.py` use topology proportions as input and plot topologies along a chromosome or given regions. The topology with the highest proportion or greater than a predefined threshold will be recorded, to suggest the putative loci of introgression.
+The script `ERICAVisualization.py` uses topology proportions as input and plot topologies along a chromosome or given regions. The topology with the highest proportion or greater than a predefined threshold will be recorded, to suggest the putative loci of introgression.
 
-The relationships between colors in output plots and topology follows:
+The relationships between colors in output plots and topology follow:
 ![](./Topological_structures_of_four-taxon_and_five-taxon_model.png)
 
-The program requires the model `plotnine` and `pandas`.
+The program requires model `plotnine` and `pandas`.
 
-The program has following options:
+The program has the following options:
 - __-h, --help__
 Show the help message and exit.
 - __-i, --Input__
-Path to input result file.
+Path to the input result file.
 - __-o, --Output__
 Output prefix.
 - __-p, --Population__
 Number of populations, _4_ or _5_.
 - __-w, --WindowSize__
-Window size for outputing and plotting. Default = '50000'. The parameter should be divisible by 5000.
+Window size for outputting and plotting. Default = '50000'. The parameter should be divisible by 5000.
 - __-r, --Region__
 1-based indexs of focal regions, split by ':'. Default = '1:-1' (the full region).
 - __-d, --DistanceToZero__
-Record topologies having proportion greater than the given threshold. Default = '0.40'. '?' indicates there is no topology passing through the threshold, which means a complex histories. 
+Record topologies having proportion greater than the given threshold. Default = '0.40'. '?' indicates there is no topology passing through the threshold, which means a complex history. 
 - __-m, --MaxValue__
-Plot the highest supporting topologies along chromosome. Default = 'True'.
+Plot the highest supporting topologies along the chromosome. Default = 'True'.
 - __-l, --Line__
-Line charts for each topology along chromosome. Default = 'True'.
+Line charts for each topology along the chromosome. Default = 'True'.
 - __-a, --Area__
-Area charts for each topology along chromosome. Default = 'True'.
+Area charts for each topology along the chromosome. Default = 'True'.
 - __-c, --Chr__
 Name for the chromosome, optional.
 
@@ -270,7 +270,7 @@ python ERICAVisualization.py \
 -r 1:200 \
 -d 0.5
 ```
-An example of output csv file `pop_test_Hmel218003o_10k.csv` records the topology proportions and category information.
+An example of output CSV file `pop_test_Hmel218003o_10k.csv` records the topology proportions and category information.
 
 |Chr|Index|A|B|C|CminusB|Max Value|Max Class|Distance Class|
 |:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
