@@ -99,17 +99,17 @@ cd ERICA
 Running ERICA pipeline requires only a standard computer with enough RAM, which is related to data size. The minimal requirement is about 3.3 GB of RAM.  
 Both CPUs and GPUs could be used, but GPUs significantly speed up the prediction step when compared to CPUs.  
 
-The following table shows the time and memory cost in prediction step for MSAs of different length (ran on one NVIDIA Tesla V100 SXM2 32GB GPU or two Intel Xeon E5-2680v3 CPUs using 20 threads):
+The following table shows the time and memory cost in prediction step for MSAs of different length:
 |Model|100 kb|1 Mb|10 Mb|100 Mb|
 |:-----:|:-----:|:-----:|:-----:|:-----:|
-|Four taxon(GPU)|0:29(3.3 Gb)|0:26(3.4 Gb)|1:37(4.5 Gb)|14:01(31.2 Gb)|
-|Five taxon(GPU)|0:45(3.3 Gb)|0:53(3.5 Gb)|2:37(5.3 Gb)|20:40(38.7 Gb)|
-|Four taxon(CPU)|2:25|17:43|165:57|1077:21|
-|Five taxon(CPU)|||||
+|Four taxon model (GPU)|0:29(3.3 Gb)|0:26(3.4 Gb)|1:37(4.5 Gb)|14:01(31.2 Gb)|
+|Five taxon model (GPU)|0:45(3.3 Gb)|0:53(3.5 Gb)|2:37(5.3 Gb)|20:40(38.7 Gb)|
+|Four taxon model (CPU)|2:25|17:43|165:57|1077:21|
+|Five taxon model (CPU)|||||
+(Times are minutes: seconds. Ran on one NVIDIA Tesla V100 SXM2 32GB GPU or two Intel Xeon E5-2680v3 CPUs using 20 threads)  
 
 The pipeline has been tested on the following systems:  
-Linux: CentOS 7.5  
-       Gentoo 4.14  
+Linux: CentOS 7.5 and Gentoo 4.14  
 
 ERICA pipeline requires `python` version 3.6 or higher, and packages `tensorflow` and `plotnine`.  
 
