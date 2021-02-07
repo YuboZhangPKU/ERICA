@@ -96,8 +96,8 @@ git clone https://github.com/YuboZhangPKU/ERICA.git
 cd ERICA
 ```
 ##### Hardware and Software Requirements
-Running ERICA pipeline requires only a standard computer with enough RAM, which is related to data size. The minimal requirement is about 3.3 GB of RAM. 
-Both CPUs and GPUs could be used, but GPUs significantly speed up the prediction step when compared to CPUs.
+Running ERICA pipeline requires only a standard computer with enough RAM, which is related to data size. The minimal requirement is about 3.3 GB of RAM.  
+Both CPUs and GPUs could be used, but GPUs significantly speed up the prediction step when compared to CPUs.  
 
 The following table shows the time and memory cost in prediction step for MSAs of different length (ran on one NVIDIA Tesla V100 SXM2 32GB GPU or two Intel Xeon E5-2680v3 CPUs using 20 threads):
 |Model|100 kb|1 Mb|10 Mb|100 Mb|
@@ -107,16 +107,16 @@ The following table shows the time and memory cost in prediction step for MSAs o
 |Four taxon(CPU)|2:25|17:43|165:57|1077:21|
 |Five taxon(CPU)|||||
 
-The pipeline has been tested on the following systems:
-Linux: CentOS 7.5
-       Gentoo 4.14
+The pipeline has been tested on the following systems:  
+Linux: CentOS 7.5  
+       Gentoo 4.14  
 
-ERICA pipeline requires `python` version 3.6 or higher, and packages `tensorflow` and `plotnine`.
+ERICA pipeline requires `python` version 3.6 or higher, and packages `tensorflow` and `plotnine`.  
 
 The following commands can create an environment using [Anaconda](https://www.anaconda.com/):  
 `conda create --name ERICA python=3.6 tensorflow=2.1.0 plotnine=0.6.0`  
-or for GPU version:
-`conda create --name ERICA python=3.6 tensorflow-gpu==2.1.0 plotnine=0.6.0`
+or for GPU version:  
+`conda create --name ERICA python=3.6 tensorflow-gpu==2.1.0 plotnine=0.6.0`  
 
 ##### Testing ERICA 
 ```
