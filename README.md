@@ -109,11 +109,11 @@ The following table shows the time and memory cost in prediction step for MSAs o
 
 
 (Times are minutes: seconds. Ran on one NVIDIA Tesla V100 SXM2 32GB GPU or two Intel Xeon E5-2680v3 CPUs using 20 threads)  
-
+  
 The pipeline has been tested on the following systems:  
 Linux: CentOS 7.5 and Gentoo 4.14  
 
-ERICA pipeline requires `python` version 3.6 or higher, and packages `tensorflow` and `plotnine`.  
+ERICA pipeline requires `python` version 3.6 or higher, and packages `tensorflow` and `plotnine`. For GPU version, [CUDA](https://developer.nvidia.com/cuda-toolkit-archive) and [cudnn](https://developer.nvidia.com/cudnn) are also required.   
 
 The following commands can create an environment using [Anaconda](https://www.anaconda.com/):  
 `conda create --name ERICA python=3.6 tensorflow=2.1.0 plotnine=0.6.0`  
