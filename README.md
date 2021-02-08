@@ -105,7 +105,7 @@ The following table shows the time and memory cost in prediction step for MSAs o
 |Four taxon model (GPU)|0:29(3.3 Gb)|0:26(3.4 Gb)|1:37(4.5 Gb)|14:01(31.2 Gb)|
 |Five taxon model (GPU)|0:45(3.3 Gb)|0:53(3.5 Gb)|2:37(5.3 Gb)|20:40(38.7 Gb)|
 |Four taxon model (CPU)|2:25|17:43|165:57|1077:21|
-|Five taxon model (CPU)|1:55|9:36|86:46||
+|Five taxon model (CPU)|1:55|9:36|86:46|857:31|
 
 
 (Times are minutes: seconds. Ran on one NVIDIA Tesla V100 SXM2 32GB GPU or two Intel Xeon E5-2680v3 CPUs using 20 threads)  
