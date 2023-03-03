@@ -301,3 +301,46 @@ The line plot likes this:
 
 And the area plot likes this:
 ![](test_result/pop_test_Hmel218003o_10k_Area.png)
+
+#### Training a specialization model (optional)
+
+Custom data could be used to train the CNNs to further improve accuracy. The script `ERICAModelTraining.py` uses MSA files and data labels with the same format as described above as input to train the models from scratch or fine-tune the pre-trained models.
+
+`ERICAModelTraining.py` has the following options:
+- __-h, --help__
+Show the help message and exit.
+- __-i, --Input__
+Path to input multiple sequence alignment (MSA) file or file list, split by comma.
+- __-l, --Label__
+Path to input label file or file list, split by comma.
+- __-o, --Output__
+Output file name.
+- __-p, --Population__
+The number of populations, _4_ or _5_.
+- __-m, --Model__
+Name of trained CNN models used for fine-tuning. 
+- __-e, --Epochs__
+The number of epochs used for model training. Default = '3'.
+- __-b, --Batch__
+Batch size. Default = '12'. 
+- __-r, --Rate__
+Learning rate. Default = '0.0001'. 
+- __--Iteration__
+Number of iterations. Training process will stop after n iterations if the parameter is specified.
+
+The command lines for training models using demo data are:
+```
+# training from scratch
+# four-taxon 
+python ERICAModelTraining.py -i test/four_pop_test_msa.txt -l test/four_pop_test.label -p 4 -o four_pop_test_model -b 8 --Iteration 10
+
+# five-taxon
+python ERICAModelTraining.py -i test/five_pop_test_msa.txt -l test/five_pop_test.label -p 5 -o five_pop_test_model -b 8 --Iteration 10
+
+# fine-tuning the pre-trained model 
+# four-taxon
+python ERICAModelTraining.py -i test/four_pop_test_msa.txt -l test/four_pop_test.label -p 4 -o four_pop_test_ft_model -m TrainedModels/four_taxon_model_319200 -b 8 --Iteration 10
+
+# five-taxon
+python ERICAModelTraining.py -i test/five_pop_test_msa.txt -l test/five_pop_test.label -p 5 -o five_pop_test_ft_model -m TrainedModels/five_taxon_model_660600 -b 8 --Iteration 10
+```
