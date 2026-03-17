@@ -28,7 +28,7 @@ from tensorflow.python.keras.layers import Conv2D
 import time
 import random
 
-TOKEN = {'G': 0, 'T': 1, 'A': 2, 'C': 3, 'N': 4, '-': 5, 'g': 0, 't': 1, 'a': 2, 'c': 3, 'n': 4}
+TOKEN = str.maketrans("GTACN-gtacn","\0\1\2\3\4\5\0\1\2\3\4")
 ###############################################################################
 # function part
 ###############################################################################
@@ -62,13 +62,9 @@ def FiveTaxonCalculateDiff(datas):
 
 def FourTaxonDataProcess(src_path):
     print('%s\t%s\tData Preprocessing > > > > > > > > > > \n' % ((time.asctime(time.localtime(time.time()))), src_path))
-    lines = open(src_path, 'r').readlines()
-    def FnToken(x):
-        for key in TOKEN:
-            x = x.replace(key, str(TOKEN[key]))
-        return x
-    lines = [FnToken(x.strip()) for x in lines]
-    lines = np.array([list(x) for x in lines], dtype=np.uint8)
+    with open(src_path, 'r') as f:
+        lines = [l.strip().translate(TOKEN).encode("ascii") for l in f]
+    lines = np.stack([np.frombuffer(l, dtype=np.uint8) for l in lines])
     print('Shape of MSA:', lines.shape)
     data_len = lines.shape[1]
     result = data_len%5000
@@ -84,13 +80,9 @@ def FourTaxonDataProcess(src_path):
 
 def FiveTaxonDataProcess(src_path):
     print('%s\t%s\tData Preprocessing > > > > > > > > > > \n' % ((time.asctime(time.localtime(time.time()))), src_path))
-    lines = open(src_path, 'r').readlines()
-    def FnToken(x):
-        for key in TOKEN:
-            x = x.replace(key, str(TOKEN[key]))
-        return x
-    lines = [FnToken(x.strip()) for x in lines]
-    lines = np.array([list(x) for x in lines], dtype=np.uint8)
+    with open(src_path, 'r') as f:
+        lines = [l.strip().translate(TOKEN).encode("ascii") for l in f]
+    lines = np.stack([np.frombuffer(l, dtype=np.uint8) for l in lines])
     print('Shape of MSA:', lines.shape)
     data_len = lines.shape[1]
     result = data_len%5000
